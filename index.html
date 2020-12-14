@@ -1,7 +1,49 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
+    <title>Rock paper scissors</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <section id="hero">
+            <h1>Rock, Paper, Scissors</h1>
+        </section>
+
+        <section id="game">
+            <div id="game-display">
+                <div id="player-display">
+                    <h3>Player</h3>
+                    <div>
+                        <p><span class="score">0</span></p>
+                        <p><span class="current-selection"></span></p>
+                    </div>
+                </div>
+                <div id="computer-display">
+                    <h3>Computer</h3>
+                    <div>
+                        <p><span class="score">0</span></p>
+                        <p><span class="current-selection"></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="game-selection">
+                <h2>Make your move</h2>
+                <div>
+                    <button class="player-select" id="rock" value="rock">Rock</button>
+                    <button class="player-select" id="paper" value="paper">Paper</button>
+                    <button class="player-select" id="scissors" value="scissors">Scissors</button>
+                </div>
+            </div>
+
+            <div id="result" hidden>
+                <h2></h2>
+                <button>Play again ?</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Javascript -->
     <script src="script.js"></script>
 </body>

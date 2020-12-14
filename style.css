@@ -1,0 +1,65 @@
+/* General */
+html {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+button {
+    padding: 0.5em 1em;
+    font-size: medium;
+    background-color: lightgrey;
+    border: none;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+/* Classes */
+.container {
+    margin: 0 25rem;
+}
+
+/* ID's */
+#game-display {
+    display: flex;
+}
+
+#game-display > div {
+    width: 100%;
+    padding: 1rem;
+}
+
+#game-display > div > div {
+    display: flex;
+    justify-content: space-between;
+}
+
+#game-display span {
+    font-size: 5em;
+}
+
+#player-display {
+    background-color: lightskyblue;
+}
+
+#computer-display {
+    background-color: lightsalmon;
+}
+
+#game-selection {
+    text-align: center;
+}
+
+#result {
+    text-align: center;
+}
+
+#result h2 {
+    font-size: 6em;
+}

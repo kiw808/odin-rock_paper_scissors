@@ -1,0 +1,37 @@
+html {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+button {
+    padding: 0.5em 1em;
+    font-size: medium;
+    background-color: lightyellow;
+    border: solid 2px lightseagreen;
+    border-radius: 5px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.container {
+    margin: 0 25rem;
+}
+
+#game-display {
+    display: flex;
+}
+
+#game-display div {
+    width: 100%;
+}
+
+#result h2 {
+    font-size: 6em;
+}

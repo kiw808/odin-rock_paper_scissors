@@ -1,3 +1,4 @@
+// Game variables
 const choices = [
     'Rock',
     'Paper',
@@ -6,6 +7,16 @@ const choices = [
 let computerScore = 0;
 let playerScore = 0;
 let roundWinner;
+let winner = '';
+
+// DOM variables
+const gameDiv = document.querySelector('#game-selection');
+const resultDiv = document.querySelector('#result');
+const buttons = document.querySelectorAll('#game-selection button');
+const resetButton = resultDiv.querySelector('button');
+const playerDisplay = document.querySelector('#player-display');
+const computerDisplay = document.querySelector('#computer-display');
+
 
 // Return a random choice
 function computerPlay() {
@@ -57,16 +68,55 @@ function playRound(playerSelection, computerSelection) {
     return result;
 }
 
-// Play a game of 5 rounds against the computer
-function game() {
-    let winner;
+// Check if one of the players reached 5 points
+function checkWinner() {
+    if (playerScore === 5) {
+        winner = 'player';
+    } else if (computerScore === 5) {
+        winner =  'computer';
+    }
+};
 
-    // Loop for 5 rounds
-    for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt('Choose : rock, paper or scissors ?');
+// Display the results of the game
+function showResults() {
+    gameDiv.setAttribute('hidden', 'true');
+    resultDiv.removeAttribute('hidden');
+
+    if (winner === 'player') {
+        resultDiv.firstElementChild.textContent = 'You win !';
+    } else {
+        resultDiv.firstElementChild.textContent = 'The computer wins ...';
+    }
+}
+
+// Reset all scores and displays
+function resetGame() {
+    winner = 0;
+    playerScore = 0;
+    computerScore = 0;
+
+    playerDisplay.querySelector('.current-selection').textContent = '';
+    playerDisplay.querySelector('.score').textContent = playerScore;
+    computerDisplay.querySelector('.current-selection').textContent = '';
+    computerDisplay.querySelector('.score').textContent = computerScore;
+
+    resultDiv.setAttribute('hidden', 'true');
+    gameDiv.removeAttribute('hidden');
+}
+
+// Reset button event
+resetButton.addEventListener('click', resetGame);
+
+/**
+ * Each time the player clicks a button, it plays a round.
+ * The game ends when one of the players reaches 5 points.
+ */
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        let playerSelection = button.value;
         let computerSelection = computerPlay();
-        
-        console.log(playRound(playerSelection, computerSelection));
+
+        playRound(playerSelection, computerSelection);
 
         // Increase player or computer score
         if (roundWinner === 'player') {
@@ -76,18 +126,17 @@ function game() {
         } else if (roundWinner === '') {
             i--;
         }
-    }
 
-    // Determine the winner
-    if (computerScore > playerScore) {
-        winner = 'Computer wins ! ' + computerScore + ':' + playerScore;
-    } else if (computerScore < playerScore) {
-        winner = 'You win ! ' + playerScore + ':' + computerScore;
-    } else {
-        winner = 'Tie game ' + playerScore + ':' + computerScore;
-    }
+        // Display the current selection and scores
+        playerDisplay.querySelector('.current-selection').textContent = button.textContent;
+        playerDisplay.querySelector('.score').textContent = playerScore;
+        computerDisplay.querySelector('.current-selection').textContent = computerSelection;
+        computerDisplay.querySelector('.score').textContent = computerScore;
 
-    console.log(winner);
-}
-
-game();
+        checkWinner();
+        
+        if (winner) {
+            showResults();
+        }
+    })
+})

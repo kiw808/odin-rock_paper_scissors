@@ -12,7 +12,7 @@ let winner = '';
 // DOM variables
 const gameDiv = document.querySelector('#game-selection');
 const resultDiv = document.querySelector('#result');
-const buttons = document.querySelectorAll('#game-selection button');
+const buttons = gameDiv.querySelectorAll('button');
 const resetButton = resultDiv.querySelector('button');
 const playerDisplay = document.querySelector('#player-display');
 const computerDisplay = document.querySelector('#computer-display');
@@ -116,6 +116,7 @@ buttons.forEach((button) => {
         let playerSelection = button.value;
         let computerSelection = computerPlay();
 
+        // Calls the playRound function
         playRound(playerSelection, computerSelection);
 
         // Increase player or computer score
@@ -133,6 +134,7 @@ buttons.forEach((button) => {
         computerDisplay.querySelector('.current-selection').textContent = computerSelection;
         computerDisplay.querySelector('.score').textContent = computerScore;
 
+        // If there is a winner, display the result
         checkWinner();
         
         if (winner) {
